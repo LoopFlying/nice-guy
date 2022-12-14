@@ -1,0 +1,50 @@
+{
+  "name": "nice-guy",
+  "version": "1.0.0",
+  "description": "A analysis tool for performance measurement",
+  "main": "index.js",
+  "bin": {
+    "nice-guy": "bin/index.js"
+  },
+  "scripts": {
+    "base": "npm publish",
+    "release": "npm publish --tag=rc",
+    "beta": "npm publish --tag=beta",
+    "alpha": "npm publish --tag=alpha",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoopFlying/nice-guy.git"
+  },
+  "author": "Evans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoopFlying/nice-guy/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "homepage": "https://github.com/LoopFlying/nice-guy#readme",
+  "dependencies": {
+    "chalk": "2.4.2",
+    "commander": "^9.4.1",
+    "dayjs": "^1.11.7",
+    "listr2": "^3.3.1",
+    "puppeteer": "^19.4.0",
+    "tti-polyfill": "^0.2.2"
+  }
+}
