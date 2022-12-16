@@ -3,10 +3,11 @@
 
 ## Install
 ```bash
-npm install d -g nice-guy
+npm install d -g @tuya-fe/nice-guy
 
 # or use yarn(recommend):
-# yarn global add pmat
+# yarn global add @tuya-fe/nice-guy
+
 ```
 
 ## Usage

@@ -16,17 +16,17 @@ program
   .action(async (url, option) => {
     const { count } = option
     const name =  getPathName(url)
+
+    console.log(name);
     
-    const task = new Listr(
-      list.map((item) => {
-        return {
-          title: 'start executing: ' + name,
-          task: async () => {
-            new Performance().run({ url, name, count: +count <= 0 ? 1 : +count })
-          },
-        }
-      })
-    )
+    const task = new Listr([
+      {
+        title: 'start executing: ' + url,
+        task: async () => {
+          await new Performance().run({ url, name, count: +count <= 0 ? 1 : +count })
+        },
+      }
+    ])
     await task.run()
   })
 

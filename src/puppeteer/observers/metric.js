@@ -15,7 +15,7 @@ class Metric {
   }
 
   async start(options) {
-    const { page, tti = true } = options
+    const { page, tti = false } = options
 
     await page.waitForSelector('body', { visible: true })
     await page.click('body')
@@ -23,16 +23,16 @@ class Metric {
     let TTI = null
 
     if (tti) {
-      await page.addScriptTag({
-        path: './node_modules/tti-polyfill/tti-polyfill.js',
-      })
+      // await page.addScriptTag({
+      //   path: './src/puppeteer/observers/tti-polyfill.js',
+      // })
 
-      // Time to Interactive
-      TTI = await page.evaluate(() =>
-        window.ttiPolyfill
-          ? window.ttiPolyfill.getFirstConsistentlyInteractive()
-          : -1
-      )
+      // // Time to Interactive
+      // TTI = await page.evaluate(() =>
+      //   window.ttiPolyfill
+      //     ? window.ttiPolyfill.getFirstConsistentlyInteractive()
+      //     : -1
+      // )
     } else {
       await page.waitForTimeout(50)
     }

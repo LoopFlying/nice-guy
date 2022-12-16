@@ -3,7 +3,8 @@ const url = require("url");
 
 /** 获取pathname */
 const getPathName = (uri) => {
-    return url.parse(uri).pathname || ''
+    const pathName = url.parse(uri).pathname
+    return pathName === '/' ? url.parse(uri).hostname : pathName
 }
 
 const readFile = (path = './') => {

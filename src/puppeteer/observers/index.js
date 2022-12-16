@@ -4,6 +4,7 @@ const navigation  = require('./navigation')
 const metric  = require('./metric')
 const dayjs = require('dayjs')
 const fs = require('fs')
+const chalk = require("chalk");
 
 class Observer {
   puppeteer = {}
@@ -37,16 +38,16 @@ class Observer {
     }
     this.results = results;
 
-    console.log('-----results-----');
-    console.log(results);
-
     if(!fs.existsSync('./out')) {
       fs.mkdirSync('out')
     }
 
-    const fileTime = dayjs().format('YYYYMMDDHHmmss')
-    fs.writeFileSync(`out/${this.options.name}-${fileTime}.json`, JSON.stringify(results, null, 2))
+    const log = '详细查看: ./out'
+    console.log(log);
+    console.log(results);
 
+    const fileTime = dayjs().format('YYYYMMDDHHmmss')
+    fs.writeFileSync(`out/${this.options.name || this.options?.url}-${fileTime}.json`, JSON.stringify(results, null, 2))
   }
 }
 
